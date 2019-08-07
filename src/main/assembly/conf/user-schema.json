@@ -1,0 +1,26 @@
+{
+  "topic": "joesoon-social-twitter-user",
+  "properties": {
+     "id": {
+        "type": "string",
+        "required": true,
+        "generator": "random"
+     },
+     "age": {
+        "type": "int",
+        "required": false,
+        "generator": "random"
+     },
+    "fans": {
+        "type": "long",
+        "required": true,
+        "generator": "random"
+    },
+    "birth": {
+       "type": "date",
+       "required": true,
+       "formatter": "yyyy-MM-dd",
+       "generator": "random"
+    }
+  }
+}
