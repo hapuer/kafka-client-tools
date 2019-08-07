@@ -1,0 +1,28 @@
+{
+  "topics":[{
+      "topic": "skynet-social-twitter-status-v1",
+      "replication-factor": 1,
+      "max.message.bytes": 104857600,
+      "compression.type": "snappy",
+      "retention.ms": 5184000000
+    }, {
+      "topic": "skynet-social-twitter-status-v1",
+      "replication-factor": 1,
+      "max.message.bytes": 104857600,
+      "compression.type": "snappy",
+      "retention.ms": 5184000000
+    }, {
+      "topic": "skynet-social-twitter-status-v1",
+      "replication-factor": 1,
+      "max.message.bytes": 104857600,
+      "compression.type": "snappy",
+      "retention.ms": 5184000000
+    }, {
+      "topic": "skynet-social-twitter-status-v1",
+      "replication-factor": 1,
+      "max.message.bytes": 104857600,
+      "compression.type": "snappy",
+      "retention.ms": 5184000000
+    }
+  ]
+}
