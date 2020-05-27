@@ -22,18 +22,18 @@ if [ $# = 0 ] || [ $# = "help" ]; then
     print_usage
 fi
 
-COMMAND = $1
+COMMAND=$1
 shift
 
 if [ "$JAVA_HOME" = "" ]; then
-    JAVA_HOME=/usr/java8
+    JAVA_HOME=/usr/java
     echo $JAVA_HOME
 fi
 
 JAVA=${JAVA_HOME}/bin/java
 HEAP_OPTS="-Xmx1024m"
 
-JAR_NAME = `ls $LIB_DIR|grep .jar|awk '{print "'$LIB_DIR'/"$0}'|tr "\n" ":"`
+JAR_NAME=`ls $LIB_DIR|grep .jar|awk '{print "'$LIB_DIR'/"$0}'|tr "\n" ":"`
 
 CLASSPATH=${CLASSPATH}:${JAVA_HOME}/lib/tools.jar
 CLASSPATH=${CLASSPATH}:${CONF_DIR}
@@ -45,8 +45,11 @@ done
 
 params=$@
 if [ "$COMMAND" = "KafkaClientCli" ]; then
-    CLASS=com.surfilter.dgm.cli.KafkaClientCli
+    CLASS=com.joesoon.tools.kafka.cli.KafkaClientCli
 elif [ "$COMMAND" = "KafkaSchemaCli" ]; then
-    CLASS=com.surfilter.dgm.cli.KafkaSchemaCli
+    CLASS=com.joesoon.tools.kafka.cli.KafkaSchemaCli
+else
+    CLASS=$COMMAND
+fi
 
-"$JAVA"  -Djava.awt.headless=true ${HEAP_OPTS} -classpath "$CLASSPATH" ${CLASS} ${params}
+"$JAVA" -Djava.awt.headless=true ${HEAP_OPTS} -classpath "$CLASSPATH" ${CLASS} ${params}

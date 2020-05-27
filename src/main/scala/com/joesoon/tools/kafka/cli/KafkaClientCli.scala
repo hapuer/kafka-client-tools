@@ -34,11 +34,11 @@ class KafkaClientCli extends CliRunner {
     */
   override def start(cmdLine: CommandLine): Unit = {
        //读取命令参数，准备消息模板
-       val topic = cmdLine.getOptionValue("t")
-       val eventCount = cmdLine.getOptionValue("n","0")
+       val topicTemplate = cmdLine.getOptionValue("t")
+       val eventCount = cmdLine.getOptionValue("n","100")
        //给serv处理
-       val kafkaClientServ = new KafkaClientServ(new KafkaConfiguration().loadConfig())
-
+       val kafkaClientServ = new KafkaClientServ(KafkaConfiguration())
+       kafkaClientServ.produceMsgs(topicTemplate,eventCount.toInt)
   }
 }
 

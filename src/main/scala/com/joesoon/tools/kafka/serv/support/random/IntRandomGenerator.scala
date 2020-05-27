@@ -1,4 +1,4 @@
-package com.joesoon.tools.kafka.serv.support
+package com.joesoon.tools.kafka.serv.support.random
 
 import com.joesoon.tools.kafka.serv.{Generator, PropertyConfig}
 

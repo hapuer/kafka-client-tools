@@ -1,10 +1,15 @@
 {
   "topic": "joesoon-social-twitter-user",
+  "generator": {
+     "type": "faker",
+     "local": "zh-CN"
+  },
+
   "properties": {
      "id": {
-        "type": "string",
-        "required": true,
-        "generator": "random"
+        "type": "Address",
+        "property": "name",
+        "required": true
      },
      "age": {
         "type": "int",

@@ -8,14 +8,11 @@ import com.typesafe.scalalogging.slf4j.LazyLogging
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 import org.apache.kafka.common.serialization.StringSerializer
 
-class KafkaClientProducer extends LazyLogging{
 
-  var kafkaConfig :KafkaConfig = _
-
-  def this(kafkaConfig: KafkaConfig){
-      this()
-      this.kafkaConfig = kafkaConfig
-  }
+/***
+  * @author hapuer
+  */
+class KafkaClientProducer(kafkaConfig:KafkaConfig) extends LazyLogging{
 
   case class KafkaProducerConfigs(brokerList: String = kafkaConfig.kafkaBroker) {
     val properties = new Properties()

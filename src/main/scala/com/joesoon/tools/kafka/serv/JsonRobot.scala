@@ -1,7 +1,8 @@
 package com.joesoon.tools.kafka.serv
 
 import com.alibaba.fastjson.JSONObject
-import com.joesoon.tools.kafka.serv.support.{ArrayRandomGenerator, DateRandomGenerator, IntRandomGenerator, LongRandomGenerator, NestedRandomGenerator, StringRandomGenerator}
+import com.joesoon.tools.kafka.serv.support.random.{ArrayRandomGenerator, DateRandomGenerator, IntRandomGenerator, LongRandomGenerator, NestedRandomGenerator, StringRandomGenerator}
+import com.joesoon.tools.kafka.serv.support.{DateRandomGenerator, IntRandomGenerator, LongRandomGenerator, NestedRandomGenerator, StringRandomGenerator}
 import com.typesafe.scalalogging.slf4j.LazyLogging
 
 
@@ -37,7 +38,7 @@ class JsonRobot() extends LazyLogging{
                   case "nested" =>{
                     destJsonObject.fluentPut(p.property,new NestedRandomGenerator().genValue(p))
                   }
-                  case _ => println(propertyType)
+                  case _ => logger.warn("invalid message type")
                 }
             }
         }

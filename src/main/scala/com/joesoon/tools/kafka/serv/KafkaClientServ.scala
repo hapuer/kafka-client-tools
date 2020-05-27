@@ -4,7 +4,7 @@ import java.io.File
 import java.nio.charset.Charset
 
 import com.alibaba.fastjson.{JSON, JSONObject}
-import com.joesoon.tools.kafka.config.KafkaConfig
+import com.joesoon.tools.kafka.config.KafkaConfiguration
 import com.joesoon.tools.kafka.kafka.KafkaClientProducer
 import com.typesafe.scalalogging.slf4j.LazyLogging
 import org.apache.commons.io.FileUtils
@@ -15,22 +15,24 @@ import scala.collection.mutable.ArrayBuffer
 /**
   * 读取消息构造模板，构造消息
   */
-class KafkaClientServ(kafkaConfig: KafkaConfig) extends LazyLogging{
+class KafkaClientServ(config: KafkaConfiguration) extends LazyLogging{
 
     private[this] val robot:JsonRobot = new JsonRobot()
-    private[this] val kafkaClientProducer = new KafkaClientProducer
+    private[this] val kafkaClientProducer = new KafkaClientProducer(config.loadConfig())
 
-    def doProduceMsgsAndSend(propertiesConfigs: ArrayBuffer[PropertyConfig]): Unit = {
-
+    def doProduceMsgsAndSend(propertiesConfigs: ArrayBuffer[PropertyConfig],count:Int): Unit = {
+      //  kafkaClientProducer.produce();
+      val jsonString = this.robot.genJson(propertiesConfigs)
+      println(jsonString)
     }
 
   /**
-      * 产生消息并发送消息
+      * 根据详细模板产生消息，并根据配置的消息条数，发送消息
       */
-    def produceMsgs(templateFile:File):Unit = {
+    def produceMsgs(templateFile:String,count:Int):Unit = {
       import scala.collection.JavaConverters._
-       val path = System.getProperty("user.dir")+File.separator+"conf/user-schema.json"
-       val jsonObj:JSONObject = JSON.parseObject(FileUtils.readFileToString(new File(path),Charset.forName("utf-8")))
+       val templateFilePath = this.config.confPath+File.separator+templateFile
+       val jsonObj:JSONObject = JSON.parseObject(FileUtils.readFileToString(new File(templateFilePath),Charset.forName("utf-8")))
        val propertyObj = jsonObj.getJSONObject("properties")
 
        val propertiesConfigs = new ArrayBuffer[PropertyConfig]()
@@ -53,14 +55,16 @@ class KafkaClientServ(kafkaConfig: KafkaConfig) extends LazyLogging{
             case _ => propertiesConfigs.append(applyGeneratorByType(p.getKey,propertiesConfigObject))
           }
        }
-       doProduceMsgsAndSend(propertiesConfigs)
+       doProduceMsgsAndSend(propertiesConfigs,count)
     }
 
 
     private def applyGeneratorByType(property:String,propertyJsonObject:JSONObject): PropertyConfig ={
             PropertyConfig(property,
-                propertyJsonObject.getString("type"), propertyJsonObject.getBoolean("required"),
-                propertyJsonObject.getString("generator"),propertyJsonObject.getString("formatter"),null)
+              propertyJsonObject.getString("type"),
+              propertyJsonObject.getBoolean("required"),
+              propertyJsonObject.getString("generator"),
+              propertyJsonObject.getString("formatter"),null)
     }
 }
 

@@ -1,4 +1,4 @@
-package com.joesoon.tools.kafka.serv.support
+package com.joesoon.tools.kafka.serv.support.random
 
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter

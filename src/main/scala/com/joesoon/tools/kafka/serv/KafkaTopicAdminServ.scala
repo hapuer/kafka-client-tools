@@ -24,7 +24,12 @@ class KafkaTopicAdminServ extends LazyLogging{
         while(iterator.hasNext){
               val jsonObj = iterator.next()
               val kafkaSchema = parseEntity(jsonObj.asInstanceOf[JSONObject])
-              createTopic(kafkaSchema)
+              try{
+                createTopic(kafkaSchema)
+              }catch{
+                case ex: Exception => logger.error("Create topic schema error: "+ kafkaSchema.topicName)
+              }
+
         }
 
     }

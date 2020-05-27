@@ -1,8 +1,9 @@
 package com.joesoon.tools.kafka.cli
 
+import com.typesafe.scalalogging.slf4j.LazyLogging
 import org.apache.commons.cli.{DefaultParser, HelpFormatter, ParseException}
 
-object SkynetCli {
+object SkynetCli extends LazyLogging{
 
       val CLI_PARAM_HELP:String = "help"; //help
       val formatter:HelpFormatter = new HelpFormatter
@@ -18,7 +19,7 @@ object SkynetCli {
              }
              cliRunner.start(cmdLine)
            }catch{
-             case ex:ParseException => println(ex)
+             case ex:ParseException => logger.error("data parse error")
            }
       }
 
