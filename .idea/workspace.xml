@@ -2,25 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05ca5900-57bf-4236-9188-c920384e6493" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/conf.properties" beforeDir="false" afterPath="$PROJECT_DIR$/conf/conf.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/assembly/bin/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/assembly/bin/run.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/assembly/conf/user-schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/assembly/conf/user-schema.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/cli/KafkaClientCli.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/cli/KafkaClientCli.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/cli/SkynetCli.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/cli/SkynetCli.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/config/KafkaConfiguration.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/config/KafkaConfiguration.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/kafka/KafkaClientProducer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/kafka/KafkaClientProducer.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/JsonRobot.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/JsonRobot.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/KafkaClientServ.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/KafkaClientServ.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/KafkaTopicAdminServ.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/KafkaTopicAdminServ.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/support/random/ArrayRandomGenerator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/support/random/ArrayRandomGenerator.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/support/random/DateRandomGenerator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/support/random/DateRandomGenerator.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/support/random/IntRandomGenerator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/support/random/IntRandomGenerator.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/support/random/LongRandomGenerator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/support/random/LongRandomGenerator.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/support/random/NestedRandomGenerator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/support/random/NestedRandomGenerator.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/support/random/StringRandomGenerator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/joesoon/tools/kafka/serv/support/random/StringRandomGenerator.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/com/joesoon/tools/kafka/TestFaker.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/com/joesoon/tools/kafka/TestFaker.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/conf.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/post-schema.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/schemas.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/status-schema.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/user-schema.json" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -39,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/assembly/conf/user-schema.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="5" column="4" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -177,11 +163,6 @@
             <path>
               <item name="kafka-client-tools" type="b2602c69:ProjectViewProjectNode" />
               <item name="kafka-client-tools" type="462c0819:PsiDirectoryNode" />
-              <item name="conf" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafka-client-tools" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafka-client-tools" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -196,14 +177,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="assembly" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kafka-client-tools" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kafka-client-tools" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="assembly" type="462c0819:PsiDirectoryNode" />
-              <item name="conf" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="kafka-client-tools" type="b2602c69:ProjectViewProjectNode" />
@@ -412,12 +385,12 @@
       <option name="presentableId" value="Default" />
       <updated>1565139232679</updated>
       <workItem from="1565139234014" duration="10083000" />
-      <workItem from="1590402702049" duration="16563000" />
+      <workItem from="1590402702049" duration="17309000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26646000" />
+    <option name="totallyTimeSpent" value="27392000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -432,7 +405,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2194206" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2194206" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -729,7 +702,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/assembly/conf/user-schema.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="4" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
         </state>
       </provider>
     </entry>
