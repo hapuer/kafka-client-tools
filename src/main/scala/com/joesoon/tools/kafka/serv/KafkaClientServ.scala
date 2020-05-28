@@ -17,55 +17,34 @@ import scala.collection.mutable.ArrayBuffer
   */
 class KafkaClientServ(config: KafkaConfiguration) extends LazyLogging{
 
-    private[this] val robot:JsonRobot = new JsonRobot()
     private[this] val kafkaClientProducer = new KafkaClientProducer(config.loadConfig())
+    private[this] val jsonTemplateParser:JsonTemplateParser = new JsonTemplateParser
 
-    def doProduceMsgsAndSend(propertiesConfigs: ArrayBuffer[PropertyConfig],count:Int): Unit = {
-      //  kafkaClientProducer.produce();
-      val jsonString = this.robot.genJson(propertiesConfigs)
-      println(jsonString)
-    }
 
   /**
       * 根据详细模板产生消息，并根据配置的消息条数，发送消息
       */
     def produceMsgs(templateFile:String,count:Int):Unit = {
-      import scala.collection.JavaConverters._
-       val templateFilePath = this.config.confPath+File.separator+templateFile
-       val jsonObj:JSONObject = JSON.parseObject(FileUtils.readFileToString(new File(templateFilePath),Charset.forName("utf-8")))
-       val propertyObj = jsonObj.getJSONObject("properties")
 
-       val propertiesConfigs = new ArrayBuffer[PropertyConfig]()
+       val jsonObj:JSONObject = JSON.parseObject(FileUtils.readFileToString(new File(this.config.confPath+File.separator+templateFile),
+                                  Charset.forName("utf-8")))
+       //解析JSON消息模板
+       val descriptor = jsonTemplateParser.parseTopicJsonTemplate(jsonObj)
+       //生成消息生成器
+       val generator = GeneratorFactory.generator(descriptor)
 
-       for(p<-propertyObj.entrySet().asScala){
-          val propertiesConfigObject = p.getValue.asInstanceOf[JSONObject]
-          val typeOfProperty = propertiesConfigObject.getString("type")
-          typeOfProperty match {
-            case "array"|"nested" =>{
-                val childrenObject = propertiesConfigObject.getJSONObject("children")
-                val seq = new ArrayBuffer[PropertyConfig]()
-                for(p<-childrenObject.entrySet().asScala){
-                  val childObj = p.getValue.asInstanceOf[JSONObject]
-                  seq.append(applyGeneratorByType(p.getKey,childObj))
-                }
-                propertiesConfigs.append(PropertyConfig(p.getKey,typeOfProperty,propertiesConfigObject.getBoolean("required"),
-                    propertiesConfigObject.getString("generator"),
-                    propertiesConfigObject.getString("formatter"),seq))
-            }
-            case _ => propertiesConfigs.append(applyGeneratorByType(p.getKey,propertiesConfigObject))
-          }
+       val msgs = new ArrayBuffer[String](count)
+       for(i<- 1 to count){
+          //根据模板生成对应的JSON格式的消息
+          val jsonMsg = generator.generateJson(descriptor)
+          msgs.append(jsonMsg)
        }
-       doProduceMsgsAndSend(propertiesConfigs,count)
+
+      kafkaClientProducer.produce(descriptor.getTopicName,msgs)
     }
 
-
-    private def applyGeneratorByType(property:String,propertyJsonObject:JSONObject): PropertyConfig ={
-            PropertyConfig(property,
-              propertyJsonObject.getString("type"),
-              propertyJsonObject.getBoolean("required"),
-              propertyJsonObject.getString("generator"),
-              propertyJsonObject.getString("formatter"),null)
-    }
 }
 
-case class PropertyConfig(property:String, propertyType:String, required:Boolean, generator:String, formatter:String, children:Seq[PropertyConfig])
+
+
+

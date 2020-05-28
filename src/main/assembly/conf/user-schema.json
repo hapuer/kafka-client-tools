@@ -4,28 +4,36 @@
      "type": "faker",
      "local": "zh-CN"
   },
-
-  "properties": {
+  "message": {
      "id": {
-        "type": "Address",
-        "property": "name",
-        "required": true
+        "mock": {
+           "type": "name",
+           "column": "username"
+        }
      },
      "age": {
-        "type": "int",
-        "required": false,
-        "generator": "random"
+       "mock": {
+         "type": "name",
+         "column": "username"
+       }
      },
     "fans": {
-        "type": "long",
-        "required": true,
-        "generator": "random"
+      "mock": {
+        "type": "name",
+        "column": "username"
+      }
     },
     "birth": {
-       "type": "date",
-       "required": true,
-       "formatter": "yyyy-MM-dd",
-       "generator": "random"
+      "mock": {
+        "type": "name",
+        "column": "username"
+      }
+    },
+    "task_info": {
+      "mock": {
+        "type": "name",
+        "column": "username"
+      }
     }
   }
 }

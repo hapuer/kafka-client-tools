@@ -27,7 +27,7 @@ class KafkaTopicAdminServ extends LazyLogging{
               try{
                 createTopic(kafkaSchema)
               }catch{
-                case ex: Exception => logger.error("Create topic schema error: "+ kafkaSchema.topicName)
+                case ex: Exception => logger.error("Create topic schema error: "+ kafkaSchema.topicName,ex)
               }
 
         }

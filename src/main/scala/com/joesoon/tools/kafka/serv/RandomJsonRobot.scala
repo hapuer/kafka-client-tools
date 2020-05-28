@@ -1,8 +1,5 @@
 package com.joesoon.tools.kafka.serv
 
-import com.alibaba.fastjson.JSONObject
-import com.joesoon.tools.kafka.serv.support.random.{ArrayRandomGenerator, DateRandomGenerator, IntRandomGenerator, LongRandomGenerator, NestedRandomGenerator, StringRandomGenerator}
-import com.joesoon.tools.kafka.serv.support.{DateRandomGenerator, IntRandomGenerator, LongRandomGenerator, NestedRandomGenerator, StringRandomGenerator}
 import com.typesafe.scalalogging.slf4j.LazyLogging
 
 
@@ -10,10 +7,10 @@ import com.typesafe.scalalogging.slf4j.LazyLogging
 /**
   * @author hapuer
   */
-class JsonRobot() extends LazyLogging{
+class RandomJsonRobot extends LazyLogging with JsonGenerator {
 
 
-    def genJson(objectPropertiesDescriptor:Seq[PropertyConfig]):String = {
+    /*def genJson(objectPropertiesDescriptor:Seq[PropertyConfig]):String = {
        val destJsonObject = new JSONObject
         if(objectPropertiesDescriptor!=null && objectPropertiesDescriptor.size>0){
 
@@ -43,5 +40,13 @@ class JsonRobot() extends LazyLogging{
             }
         }
         destJsonObject.toJSONString
-    }
+    }*/
+
+  /**
+    * 根据消息的描述，产生构造出相应的消息
+    *
+    * @param msgTopicDescriptors 消息的描述
+    * @return
+    */
+  override def generateJson(msgTopicDescriptors: TopicDescriptor): String = ""
 }

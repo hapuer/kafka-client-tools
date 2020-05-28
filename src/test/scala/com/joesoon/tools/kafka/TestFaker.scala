@@ -15,6 +15,9 @@ object TestFaker {
       println(faker.internet().url())
       println(faker.esports().player())
       println(faker.name().username())
+      println(faker.number().numberBetween(1,5))
+      println(faker.date().birthday())
+
     }
 
   }

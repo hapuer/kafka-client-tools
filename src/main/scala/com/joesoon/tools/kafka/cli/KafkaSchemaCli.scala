@@ -48,7 +48,7 @@ class KafkaSchemaCli extends CliRunner with LazyLogging {
             return
           }
         }catch {
-          case ex:IOException => logger.error("can't find directory.{}",ex.getMessage)
+          case ex:IOException => logger.error("can't find directory.{}",ex)
         }
       }
 

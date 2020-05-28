@@ -25,14 +25,15 @@ class KafkaConfiguration extends LazyLogging {
     FileBasedConfigurationBuilder.setDefaultEncoding(classOf[PropertiesConfiguration], "UTF-8")
     val config:PropertiesConfiguration = configs.properties(new File(this.confFile))
     val kafkaConfig = KafkaConfig(
-      config.getString("kafka.broker")
+      config.getString("kafka.broker"),
+      config.getString("kafka.zk.url")
     )
     logger.info("kafkaconfig: {}",kafkaConfig.toString)
     kafkaConfig
   }
 }
 
-case class KafkaConfig(kafkaBroker:String)
+case class KafkaConfig(kafkaBroker:String,zkInf:String)
 
 
 object KafkaConfiguration {

@@ -22,7 +22,7 @@ class KafkaClientAdmin(kafkaConfigIn: KafkaConfig) extends LazyLogging {
     */
    def createTopic(topicSchema: TopicSchema):Unit = {
       logger.info("create schema of topic: {}",topicSchema.topicName)
-      val zkUtils = ZkUtils.apply(this.kafkaConfig.kafkaBroker,sessionTimeout,connectTimeout,JaasUtils.isZkSecurityEnabled)
+      val zkUtils = ZkUtils.apply(this.kafkaConfig.zkInf,sessionTimeout,connectTimeout,JaasUtils.isZkSecurityEnabled)
       AdminUtils.createTopic(zkUtils,topicSchema.topicName,topicSchema.partition,topicSchema.repliaFactor,new Properties,RackAwareMode.Disabled)
       zkUtils.close
    }
