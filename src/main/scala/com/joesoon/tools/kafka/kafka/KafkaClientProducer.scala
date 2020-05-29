@@ -15,20 +15,20 @@ import scala.collection.mutable.ArrayBuffer
   */
 class KafkaClientProducer(kafkaConfig:KafkaConfig) extends LazyLogging{
 
-  case class KafkaProducerConfigs(brokerList: String = kafkaConfig.kafkaBroker) {
-    val properties = new Properties
-    properties.put("bootstrap.servers", brokerList)
-    properties.put("key.serializer", classOf[StringSerializer])
-    properties.put("value.serializer", classOf[StringSerializer])
-  }
+    case class KafkaProducerConfigs(brokerList: String = kafkaConfig.kafkaBroker) {
+      val properties = new Properties
+      properties.put("bootstrap.servers", brokerList)
+      properties.put("key.serializer", classOf[StringSerializer])
+      properties.put("value.serializer", classOf[StringSerializer])
+    }
 
-  val producer = new KafkaProducer[String, String](KafkaProducerConfigs().properties)
+    val producer = new KafkaProducer[String, String](KafkaProducerConfigs().properties)
 
-  def produce(topic: String, messages: ArrayBuffer[String]): Unit = {
-      for(msg<-messages){
-         producer.send(new ProducerRecord[String,String](topic,msg))
-      }
-      producer.close
-  }
+    def produce(topic: String, messages: ArrayBuffer[String]): Unit = {
+        for(msg<-messages){
+           producer.send(new ProducerRecord[String,String](topic,msg))
+        }
+        producer.close
+    }
 
 }

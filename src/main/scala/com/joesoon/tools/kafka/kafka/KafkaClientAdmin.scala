@@ -44,7 +44,10 @@ class KafkaClientAdmin(kafkaConfigIn: KafkaConfig) extends LazyLogging {
     * @param topicSchema
     */
   def deleteTopic(topicSchema: TopicSchema):Unit = {
-
+        val zkUtils = ZkUtils.apply(this.kafkaConfig.kafkaBroker,sessionTimeout,connectTimeout,JaasUtils.isZkSecurityEnabled)
+        //先删除
+        AdminUtils.deleteTopic(zkUtils, topicSchema.topicName)
+        zkUtils.close()
   }
 
 }
