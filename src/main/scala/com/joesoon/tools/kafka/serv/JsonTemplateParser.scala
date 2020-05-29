@@ -1,11 +1,12 @@
 package com.joesoon.tools.kafka.serv
 
 import com.alibaba.fastjson.JSONObject
+import com.typesafe.scalalogging.slf4j.LazyLogging
 
 import scala.collection.JavaConversions._
 import scala.collection.mutable.ArrayBuffer
 
-class JsonTemplateParser {
+class JsonTemplateParser extends LazyLogging{
 
     /**
       * 解析消息格式
@@ -19,7 +20,10 @@ class JsonTemplateParser {
            val propertyJsonObject =  message.getJSONObject(key)
            if(propertyJsonObject.containsKey("mock")){
                val mockObj =  propertyJsonObject.getJSONObject("mock")
-               propertyDescriptors.append(new PropertyDescriptor(key,mockObj.getString("type"),mockObj.getString("column"),new ArrayBuffer[Any]()))
+               propertyDescriptors.append(new PropertyDescriptor(key,mockObj.getString("type"),
+                   mockObj.getString("column"),new ArrayBuffer[Any]()))
+           }else{
+               logger.warn("message template config error.")
            }
         }
         propertyDescriptors
